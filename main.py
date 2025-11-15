@@ -25,6 +25,15 @@ def processCommand(c):
     elif "open facebook" in c.lower():
         speak("opening facebook")
         webbrowser.open("https://www.facebook.com")
+    elif "open instagram" in c.lower():
+        speak("opening instagram")
+        webbrowser.open("https://www.instagram.com")
+    elif "open github" in c.lower():
+        speak("opening github")
+        webbrowser.open("https://www.github.com")
+    elif "open gmail" in c.lower():
+        speak("opening gmail")
+        webbrowser.open("https://www.gmail.com")
     else:
         speak("command not recognized")
 
