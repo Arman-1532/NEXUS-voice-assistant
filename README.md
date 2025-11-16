@@ -4,7 +4,7 @@ A compact, personal voice assistant that listens for the wake word "nexus" and t
 
 This README documents the project's features, how to configure and run it, available voice commands, and troubleshooting tips.
 
----
+
 
 ## Table of contents
 
@@ -21,7 +21,7 @@ This README documents the project's features, how to configure and run it, avail
 - Troubleshooting
 
 
----
+
 
 ## About
 
@@ -36,7 +36,7 @@ The current assistant implementation lives in `main.py`. It delegates to two sma
 - `sites_Library.py` — mapping of site keywords to URLs (used by the `open` command)
 
 
----
+
 
 ## Features
 
@@ -46,7 +46,7 @@ The current assistant implementation lives in `main.py`. It delegates to two sma
 - Read top headlines when you say "news" (requires `NEWS_API_KEY`)
 - General conversational queries are forwarded to the GitHub Models inference API and the response is spoken back
 
----
+
 
 ## Project structure (key files)
 
@@ -55,7 +55,7 @@ The current assistant implementation lives in `main.py`. It delegates to two sma
 - `sites_Library.py` — a dict of site keywords -> URL
 - `requirements.txt` — Python dependency list
 
----
+
 
 ## Requirements
 
@@ -65,7 +65,7 @@ The current assistant implementation lives in `main.py`. It delegates to two sma
 
 Recommended workflow: create a Python virtual environment and install dependencies with `pip`.
 
----
+
 
 ## Environment variables
 
@@ -75,7 +75,7 @@ The assistant reads a few environment variables for optional features:
 - `NEWS_API_KEY` (required for the `news` command) — used to fetch top headlines from a news provider.
 
 
----
+
 
 ## Installation
 
@@ -95,7 +95,7 @@ python -m pip install -r requirements.txt
 
 4. Add your keys to `.env` (see "Environment variables" above).
 
----
+
 
 ## How it works / architecture (short)
 
@@ -109,7 +109,7 @@ python -m pip install -r requirements.txt
 
 Speech-to-text is handled by `speech_recognition` (Google recognizer) and speech output uses `pyttsx3`.
 
----
+
 
 ## Voice commands and examples
 
@@ -136,7 +136,7 @@ After you hear the assistant confirm, try these commands:
 - Exit / deactivate:
   - Say: "exit", "quit", or "deactivate" to stop the assistant after activation.
 
----
+
 
 ## Playable items (supported `play` keywords)
 
@@ -146,7 +146,7 @@ wolf, space, study, relax, motivation, coding, python, javascript, machine, neur
 
 (These map to the YouTube links held in `playable_Library.py`. You can add or remove entries in that file to customize your library.)
 
----
+
 
 ## Supported websites (supported `open` keywords)
 
@@ -154,7 +154,7 @@ The following site keywords are supported by `sites_Library.py` and will open in
 
 google, youtube, facebook, instagram, linkedin, github, gmail
 
----
+
 
 ## Troubleshooting and tips
 
@@ -172,5 +172,3 @@ google, youtube, facebook, instagram, linkedin, github, gmail
 - Responses are repetitive or 'same every time':
   - If using a model endpoint, tweak model parameters on the server side (temperature) or in the client.
   - Confirm different prompts are being sent; add logging to `main.py` to inspect the exact prompt.
-
----
