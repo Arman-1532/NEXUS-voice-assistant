@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/.gitignore">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/.gitignore" />
+              <option name="updatedContent" value=".env&#10;# Virtual environments&#10;venv/&#10;.env.local&#10;# Python cache&#10;__pycache__/&#10;*.py[cod]&#10;# macOS&#10;.DS_Store&#10;# IDEs&#10;.idea/&#10;.vscode/&#10;# Logs&#10;*.log&#10;# Persistent system files&#10;Thumbs.db&#10;# Optional: Python egg/build&#10;dist/&#10;build/&#10;*.egg-info/&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/client.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/client.py" />
+              <option name="updatedContent" value="# Minimal OpenAI client for NAFIS-voice-assistant&#10;# - Reads OPENAI_API_KEY from the environment (supports .env via python-dotenv)&#10;# - Exposes get_response(prompt) for other modules to call&#10;# - When run as a script, accepts a prompt via CLI args or interactive input&#10;&#10;from dotenv import load_dotenv&#10;import os&#10;import sys&#10;import openai&#10;&#10;load_dotenv()&#10;&#10;API_KEY = os.getenv(&quot;OPENAI_API_KEY&quot;)&#10;if API_KEY:&#10;    openai.api_key = API_KEY&#10;&#10;&#10;def has_api_key() -&gt; bool:&#10;    &quot;&quot;&quot;Return True if OPENAI_API_KEY was loaded from the environment.&quot;&quot;&quot;&#10;    return bool(API_KEY)&#10;&#10;&#10;def get_response(prompt: str, model: str = &quot;gpt-3.5-turbo&quot;, max_tokens: int = 500, temperature: float = 0.7) -&gt; str:&#10;    &quot;&quot;&quot;Send a prompt to OpenAI Chat Completions and return the assistant reply as text.&#10;&#10;    Raises RuntimeError if the API key is not configured.&#10;    &quot;&quot;&quot;&#10;    if not has_api_key():&#10;        raise RuntimeError(&quot;OPENAI_API_KEY is not set. Set it in environment or a .env file before calling get_response().&quot;)&#10;&#10;    if not prompt:&#10;        raise ValueError(&quot;prompt must be a non-empty string&quot;)&#10;&#10;    try:&#10;        response = openai.ChatCompletion.create(&#10;            model=model,&#10;            messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: prompt}],&#10;            max_tokens=max_tokens,&#10;            temperature=temperature,&#10;        )&#10;        # Extract assistant text&#10;        text = response.choices[0].message.get(&quot;content&quot;)&#10;        if text is None:&#10;            # Fallback for unexpected response shape&#10;            text = response.choices[0].text if hasattr(response.choices[0], 'text') else &quot;&quot;&#10;        return text.strip()&#10;    except Exception as e:&#10;        raise RuntimeError(f&quot;OpenAI request failed: {e}&quot;)&#10;&#10;&#10;if __name__ == &quot;__main__&quot;:&#10;    # CLI usage: python client.py [prompt words...]&#10;    if len(sys.argv) &gt; 1:&#10;        prompt = &quot; &quot;.join(sys.argv[1:])&#10;    else:&#10;        try:&#10;            prompt = input(&quot;Enter prompt: &quot;)&#10;        except KeyboardIn

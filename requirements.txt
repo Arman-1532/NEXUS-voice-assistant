@@ -1,5 +1,9 @@
-SpeechRecognition
-pyttsx3
-pyaudio
-openai
-python-dotenv
+# Requirements for NEXUS-voice-assistant
+speechrecognition>=3.8.1
+pyttsx3>=2.90
+pyaudio>=0.2.11
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# Note: On macOS, install PortAudio (brew install portaudio) before installing pyaudio.
+# If pyaudio is problematic, consider using alternative audio backends (e.g., sounddevice) and adapt the code.

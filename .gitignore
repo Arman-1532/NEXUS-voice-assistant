@@ -1,0 +1,21 @@
+.env
+# Virtual environments
+venv/
+.env.local
+# Python cache
+__pycache__/
+*.py[cod]
+# macOS
+.DS_Store
+# IDEs
+.idea/
+.vscode/
+# Logs
+*.log
+# Persistent system files
+Thumbs.db
+# Optional: Python egg/build
+dist/
+build/
+*.egg-info/
+
