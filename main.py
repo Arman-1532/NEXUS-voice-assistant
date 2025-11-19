@@ -1,3 +1,4 @@
+
 import time
 import pyttsx3
 import webbrowser
@@ -13,15 +14,6 @@ newsapikey = os.environ.get("NEWS_API_KEY")
 GITHUB_TOKEN = os.environ.get("GITHUB_MODELS_TOKEN")
 API_URL = "https://models.github.ai/inference/chat/completions"
 recognition_enabled = True
-
-# Try to import the optional OpenAI client (client.py). If present and configured,
-# prefer it for conversational queries. Import safely so main.py still runs without it.
-try:
-    from client import has_api_key as openai_has_key, get_response as openai_get_response
-    OPENAI_AVAILABLE = True
-except Exception:
-    OPENAI_AVAILABLE = False
-
 
 def ask_github_model(prompt: str, model: str = "openai/gpt-4o"):
     headers = {
@@ -42,7 +34,6 @@ def ask_github_model(prompt: str, model: str = "openai/gpt-4o"):
     data = resp.json()    # data(dict) te id and choices(list of dict) thakbe
     return data["choices"][0]["message"]["content"]
 
-
 def speak(text):
     global recognition_enabled
     recognition_enabled = False
@@ -53,7 +44,6 @@ def speak(text):
 
     time.sleep(0.5)
     recognition_enabled = True
-
 
 def processCommand(c):
     if c.lower().startswith("open"):
@@ -78,15 +68,10 @@ def processCommand(c):
 
     else:
        try:
-            # Prefer local OpenAI client when available and configured, otherwise use GitHub Models
-            if OPENAI_AVAILABLE and openai_has_key():
-                answer = openai_get_response(c)
-            else:
-                answer = ask_github_model(c)
+            answer = ask_github_model(c)
             speak(answer)
        except Exception as e:
-            print("Error calling model API:", e)
-
+            print("Error calling GitHub Models API:", e)
 
 def main():
     speak("initializing Nexus...")
